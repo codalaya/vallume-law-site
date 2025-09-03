@@ -1,0 +1,364 @@
+<!-- <!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>GSAP Image Fade</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #111;
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 500px;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .image-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Start second image hidden */
+        .image-wrapper img:nth-child(2) {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="image-wrapper">
+        <img src="https://picsum.photos/id/1015/800/500" alt="First">
+        <img src="https://picsum.photos/id/1020/800/500" alt="Second">
+
+    </div>
+
+    <button onclick="sayHello()">Toggle</button>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script>
+        function sayHello(event) {
+            const [img1, img2] = document.querySelectorAll(".image-wrapper img");
+            console.log('animating images');
+            // crossfade
+            gsap.to(img1, { opacity: 0, duration: 1.5, ease: "power2.inOut" });
+            gsap.to(img2, {
+                opacity: 1,
+                duration: 10,
+                ease: "power2.inOut",
+                scale: 1.1,
+                // onComplete: function() {
+                //     gsap.to(img2, { scale: 1, duration: 1.5, ease: "power2.inOut" });
+                // }
+            });
+        }
+    </script>
+</body>
+
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shooting Stars on Grid</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #f9f9f9; /* light background */
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+ <canvas id="gridCanvas"></canvas>
+<script>
+const canvas = document.getElementById("gridCanvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const gridSize = 60; // distance between grid lines
+const particles = [];
+
+// Create grid lines
+function drawGrid() {
+  ctx.strokeStyle = "rgba(0,0,0,0.05)";
+  ctx.lineWidth = 0.00001;
+//   for (let x = 0; x < canvas.width; x += gridSize) {
+//     ctx.beginPath();
+//     ctx.moveTo(x, 0);
+//     ctx.lineTo(x, canvas.height);
+//     ctx.stroke();
+//   }
+//   for (let y = 0; y < canvas.height; y += gridSize) {
+//     ctx.beginPath();
+//     ctx.moveTo(0, y);
+//     ctx.lineTo(canvas.width, y);
+//     ctx.stroke();
+//   }
+}
+
+// Shooting star style particle
+class Particle {
+  constructor(x, y, direction) {
+    this.x = x;
+    this.y = y;
+    this.direction = direction; // 'h' or 'v'
+    this.speed = 4;
+    this.length = 10; // tail length
+    this.life = 0;
+  }
+
+  update() {
+    if (this.direction === "h") {
+      this.x += this.speed;
+    } else {
+      this.y += this.speed;
+    }
+    this.life++;
+  }
+
+  draw() {
+    ctx.beginPath();
+    const grad = ctx.createLinearGradient(
+      this.x, this.y,
+      this.direction === "h" ? this.x - this.length : this.x,
+      this.direction === "v" ? this.y - this.length : this.y
+    );
+    grad.addColorStop(0, "rgba(0,150,255,0.9)"); // bright tip
+    grad.addColorStop(1, "rgba(0,150,255,0)");   // fading tail
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = 1;
+    ctx.moveTo(this.x, this.y);
+    if (this.direction === "h") {
+      ctx.lineTo(this.x - this.length, this.y);
+    } else {
+      ctx.lineTo(this.x, this.y - this.length);
+    }
+    ctx.stroke();
+  }
+
+  isDead() {
+    return (this.x > canvas.width || this.y > canvas.height);
+  }
+}
+
+function animate() {
+  ctx.fillStyle = "rgba(255,255,255,0.15)"; // light background fade
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  drawGrid();
+
+  // Add new particles randomly
+  if (Math.random() < 0.08) {
+    const direction = Math.random() > 0.5 ? "h" : "v";
+    if (direction === "h") {
+      particles.push(new Particle(0, Math.floor(Math.random() * (canvas.height / gridSize)) * gridSize, "h"));
+    } else {
+      particles.push(new Particle(Math.floor(Math.random() * (canvas.width / gridSize)) * gridSize, 0, "v"));
+    }
+  }
+
+  // Update and draw particles
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const p = particles[i];
+    p.update();
+    p.draw();
+    if (p.isDead()) {
+      particles.splice(i, 1);
+    }
+  }
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+</script>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="grid" width="800" height="600"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+        const canvas = document.getElementById("grid");
+        const ctx = canvas.getContext("2d");
+
+        const gridSize = 50;
+        let particles = [];
+
+        function createParticle() {
+            let isVertical = Math.random() > 0.5;
+            let line = Math.floor(Math.random() * (isVertical ? canvas.width : canvas.height) / gridSize) * gridSize;
+
+            let particle = {
+                x: isVertical ? line : 0,
+                y: isVertical ? 0 : line,
+                isVertical,
+                progress: 0
+            };
+            particles.push(particle);
+
+            gsap.to(particle, {
+                progress: 1,
+                duration: 2 + Math.random() * 2,
+                ease: "none",
+                onComplete: () => {
+                    particles = particles.filter(p => p !== particle);
+                }
+            });
+        }
+
+        function draw() {
+            ctx.fillStyle = "rgba(255,255,255,0.2)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw grid
+            ctx.strokeStyle = "rgba(0,0,0,0.1)";
+            for (let x = 0; x < canvas.width; x += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, canvas.height);
+                ctx.stroke();
+            }
+            for (let y = 0; y < canvas.height; y += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+                ctx.stroke();
+            }
+
+            // Draw particles with tails
+            particles.forEach(p => {
+                let posX = p.isVertical ? p.x : p.progress * canvas.width;
+                let posY = p.isVertical ? p.progress * canvas.height : p.y;
+
+                let grad = ctx.createLinearGradient(
+                    posX, posY,
+                    p.isVertical ? posX : posX - 60,
+                    p.isVertical ? posY - 60 : posY
+                );
+                grad.addColorStop(0, "rgba(21,63,131,0.8)");
+                grad.addColorStop(1, "rgba(21,63,131,0)");
+
+                ctx.strokeStyle = grad;
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(posX, posY);
+                ctx.lineTo(
+                    p.isVertical ? posX : posX - 60,
+                    p.isVertical ? posY - 60 : posY
+                );
+                ctx.stroke();
+            });
+
+            requestAnimationFrame(draw);
+        }
+
+        setInterval(createParticle, 400);
+        draw();
+    </script>
+
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Corner Fade Transition</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #111;
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 400px;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .image-wrapper img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            top: 0;
+            left: 0;
+        }
+
+        .image-wrapper img.new {
+            clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+            /* hidden at first */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="image-wrapper">
+        <img src="./public/images/aib3.jpg" class="old" id="img1">
+        <img src="./public/images/ai2.jpg" class="new" id="img2">
+    </div>
+
+    <button onclick="animateFrame(event)">Animate Frmae</button>
+
+    <script>
+        const oldImg = document.querySelector(".old");
+        const newImg = document.querySelector(".new");
+
+        function animateFrame() {
+            // Animate reveal of the new image (corner sweep)
+            gsap.to(newImg, {
+                duration: 1,
+                ease: "power2.out",
+                // clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)", // reveal fully
+                clipPath: "circle(0% at 0% 100%)",
+                onComplete: () => {
+                    oldImg.remove(); // cleanup old img
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@config 'tailwind.config.js';
+
+/*
+/* Sidebar background */
+.fi-sidebar {
+    background-color: #123c82 !important; /* Dark blue */
+}
+
+/* Sidebar links */
+.fi-sidebar-nav a {
+    color: #d1d5db !important; /* light gray */
+}
+
+/* Sidebar active/hover states */
+.fi-sidebar-nav a:hover,
+.fi-sidebar-nav a[aria-current="page"] {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+}
+
+/* Sidebar icons */
+.fi-sidebar-nav svg {
+    color: #bfc9e0 !important;
+}
+
+/* Active icon color */
+.fi-sidebar-nav a[aria-current="page"] svg {
+    color: #ffffff !important;
+}
+
+.fi-sidebar-nav a {
+    @apply text-white !important;
+}
+
+/* or if you don’t want all links */
+.fi-sidebar-nav a .fi-sidebar-item-label {
+    @apply text-white !important;
+}
+
+
+.fi-sidebar-nav .fi-sidebar-item.fi-active.fi-sidebar-item-active a  .fi-sidebar-item-label {
+    @apply text-black !important;
+}
+.fi-sidebar-nav .fi-sidebar-item.fi-active.fi-sidebar-item-active svg {
+    @apply text-black !important;
+}

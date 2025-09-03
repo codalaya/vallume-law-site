@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attorna Law Firm - Professional Legal Services</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #153f83;
+            --secondary-color: rgba(21, 63, 131, 0.8);
+            --accent-color: #c4924a;
+            --text-light: rgba(255, 255, 255, 0.9);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background: rgba(21, 63, 131, 0.95) !important;
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: white !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-light) !important;
+            font-weight: 400;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--accent-color) !important;
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background-color: var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .hero-section {
+            height: 85vh;
+            min-height: 600px;
+            max-height: 900px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-container {
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-slide {
+            height: 100%;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(21, 63, 131, 0.75), rgba(21, 63, 131, 0.45));
+            z-index: 1;
+        }
+
+        .carousel-slide.zoom-effect {
+            animation: powerfulZoom 6s ease-out forwards;
+        }
+
+        @keyframes powerfulZoom {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.08);
+            }
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            padding: 0 1rem;
+        }
+
+        .slide-subtitle {
+            font-size: 1rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .slide-subtitle.animate {
+            animation: powerfulEntry 0.6s ease-out 0.1s forwards;
+        }
+
+        .slide-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.8rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            line-height: 1.1;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .slide-title.animate {
+            animation: powerfulEntry 0.7s ease-out 0.2s forwards;
+        }
+
+        .slide-description {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            font-weight: 400;
+            opacity: 0;
+            transform: translateY(25px);
+        }
+
+        .slide-description.animate {
+            animation: powerfulEntry 0.6s ease-out 0.4s forwards;
+        }
+
+        .slide-button {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .slide-button.animate {
+            animation: powerfulEntry 0.5s ease-out 0.6s forwards;
+        }
+
+        @keyframes powerfulEntry {
+            0% {
+                opacity: 0;
+                transform: translateY(var(--y-offset, 20px));
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn-authority {
+            background: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            color: white;
+            padding: 14px 40px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border-radius: 0;
+            box-shadow: 0 4px 15px rgba(196, 146, 74, 0.3);
+        }
+
+        .btn-authority:hover {
+            background: transparent;
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(196, 146, 74, 0.4);
+        }
+
+        .carousel-indicators {
+            bottom: 30px;
+            margin-bottom: 0;
+            z-index: 3;
+            gap: 10px;
+        }
+
+        .carousel-indicator {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            background: transparent;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-indicator.active {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: scale(1.3);
+            box-shadow: 0 0 10px rgba(196, 146, 74, 0.5);
+        }
+
+        .carousel-indicator:hover:not(.active) {
+            border-color: rgba(255, 255, 255, 0.7);
+            transform: scale(1.1);
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 3;
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-controls:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-prev {
+            left: 30px;
+        }
+
+        .carousel-next {
+            right: 30px;
+        }
+
+        .cart-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .cart-icon {
+            position: relative;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .cart-icon:hover {
+            color: var(--accent-color);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .search-icon {
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .search-icon:hover {
+            color: var(--accent-color);
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 70vh;
+                min-height: 500px;
+            }
+
+            .slide-title {
+                font-size: 2.8rem;
+            }
+
+            .slide-description {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+
+            .slide-subtitle {
+                font-size: 0.9rem;
+                letter-spacing: 2px;
+            }
+
+            .btn-authority {
+                padding: 12px 30px;
+                font-size: 0.85rem;
+            }
+
+            .carousel-controls {
+                width: 45px;
+                height: 45px;
+            }
+
+            .carousel-prev {
+                left: 15px;
+            }
+
+            .carousel-next {
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-section {
+                height: 65vh;
+                min-height: 450px;
+            }
+
+            .slide-title {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+            }
+
+            .slide-description {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .slide-content {
+                padding: 0 1.5rem;
+            }
+
+            .btn-authority {
+                padding: 10px 25px;
+                font-size: 0.8rem;
+                letter-spacing: 1px;
+            }
+
+            .carousel-indicators {
+                bottom: 20px;
+            }
+
+            .carousel-indicator {
+                width: 12px;
+                height: 12px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .slide-title {
+                font-size: 2rem;
+            }
+
+            .slide-content {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">Attorna Law Firm</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" @click="handleNavClick('home')">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                Pages
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" @click="handleNavClick('about')">About Us</a></li>
+                                <li><a class="dropdown-item" href="#" @click="handleNavClick('team')">Our Team</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                Practice Areas
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" @click="handleNavClick('corporate')">Corporate Law</a></li>
+                                <li><a class="dropdown-item" href="#" @click="handleNavClick('criminal')">Criminal Defense</a></li>
+                                <li><a class="dropdown-item" href="#" @click="handleNavClick('family')">Family Law</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                Attorney
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" @click="handleNavClick('profiles')">Attorney Profiles</a></li>
+                                <li><a class="dropdown-item" href="#" @click="handleNavClick('consultation')">Free Consultation</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                Case Study
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" @click="handleNavClick('cases')">Recent Cases</a></li>
+                                <li><a class="dropdown-item" href="#" @click="handleNavClick('success')">Success Stories</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                Blog
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" @click="handleNavClick('blog')">Latest Posts</a></li>
+                                <li><a class="dropdown-item" href="#" @click="handleNavClick('news')">Legal News</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                Shop
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" @click="handleNavClick('documents')">Legal Documents</a></li>
+                                <li><a class="dropdown-item" href="#" @click="handleNavClick('consultations')">Consultations</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="cart-section">
+                        <i class="search-icon fas fa-search" @click="handleSearch"></i>
+                        <div class="cart-icon" @click="handleCart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">{{ cartCount }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Carousel Section -->
+        <section class="hero-section" data-aos="fade-in" data-aos-duration="1000">
+            <div class="carousel-container">
+                <!-- Carousel Slide -->
+                <div
+                    v-for="(slide, index) in slides"
+                    :key="index"
+                    :class="['carousel-slide', { 'zoom-effect': index === currentSlide }]"
+                    :style="{
+                        backgroundImage: `url(${slide.image})`,
+                        display: index === currentSlide ? 'flex' : 'none'
+                    }"
+                >
+                    <div class="slide-content">
+                        <div
+                            :class="['slide-subtitle', { animate: index === currentSlide && animateText }]"
+                            data-aos="fade-up"
+                            data-aos-delay="100"
+                        >
+                            {{ slide.subtitle }}
+                        </div>
+                        <h1
+                            :class="['slide-title', { animate: index === currentSlide && animateText }]"
+                            data-aos="fade-up"
+                            data-aos-delay="200"
+                        >
+                            {{ slide.title }}
+                        </h1>
+                        <p
+                            :class="['slide-description', { animate: index === currentSlide && animateText }]"
+                            data-aos="fade-up"
+                            data-aos-delay="300"
+                        >
+                            {{ slide.description }}
+                        </p>
+                        <div
+                            :class="['slide-button', { animate: index === currentSlide && animateText }]"
+                            data-aos="fade-up"
+                            data-aos-delay="400"
+                        >
+                            <button class="btn btn-authority" @click="handleCTA(slide.cta)">
+                                {{ slide.buttonText }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom Indicators -->
+                <div class="carousel-indicators d-flex justify-content-center">
+                    <div
+                        v-for="(slide, index) in slides"
+                        :key="`indicator-${index}`"
+                        :class="['carousel-indicator', { active: index === currentSlide }]"
+                        @click="goToSlide(index)"
+                    ></div>
+                </div>
+
+                <!-- Custom Controls -->
+                <div class="carousel-controls carousel-prev" @click="prevSlide">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="carousel-controls carousel-next" @click="nextSlide">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional content sections would go here -->
+        <section class="py-5" style="background: #f8f9fa;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h2 data-aos="fade-up">Additional Content Below Hero</h2>
+                        <p data-aos="fade-up" data-aos-delay="100">This demonstrates that the hero section doesn't take up the entire viewport.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const { createApp, ref, onMounted, onUnmounted } = Vue;
+
+        createApp({
+            setup() {
+                const currentSlide = ref(0);
+                const animateText = ref(true);
+                const cartCount = ref(0);
+                let autoplayInterval = null;
+
+                const slides = ref([
+                    {
+                        image: 'https://images.pexels.com/photos/5668772/pexels-photo-5668772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                        subtitle: 'Welcome To',
+                        title: 'Attorna Law Firm',
+                        description: 'We are a leading law firm in financial & business industry. With more than 20 years of experience delivering exceptional legal solutions.',
+                        buttonText: 'Contact Now →',
+                        cta: 'contact'
+                    },
+                    {
+                        image: 'https://images.pexels.com/photos/8112198/pexels-photo-8112198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                        subtitle: 'Professional',
+                        title: 'Legal Excellence',
+                        description: 'Dedicated to providing exceptional legal services with integrity, expertise, and personalized attention to every client matter.',
+                        buttonText: 'Get Consultation →',
+                        cta: 'consultation'
+                    },
+                    {
+                        image: 'https://images.pexels.com/photos/6077326/pexels-photo-6077326.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                        subtitle: 'Trusted',
+                        title: 'Legal Advisors',
+                        description: 'Your trusted partners in navigating complex legal matters with a proven track record of successful outcomes.',
+                        buttonText: 'Learn More →',
+                        cta: 'about'
+                    }
+                ]);
+
+                const startAutoplay = () => {
+                    if (autoplayInterval) clearInterval(autoplayInterval);
+                    autoplayInterval = setInterval(() => {
+                        nextSlide();
+                    }, 6000);
+                };
+
+                const stopAutoplay = () => {
+                    if (autoplayInterval) {
+                        clearInterval(autoplayInterval);
+                        autoplayInterval = null;
+                    }
+                };
+
+                const goToSlide = (index) => {
+                    if (index === currentSlide.value) return;
+
+                    stopAutoplay();
+                    animateText.value = false;
+
+                    setTimeout(() => {
+                        currentSlide.value = index;
+                        animateText.value = true;
+                        startAutoplay();
+                    }, 50);
+                };
+
+                const nextSlide = () => {
+                    const nextIndex = (currentSlide.value + 1) % slides.value.length;
+                    goToSlide(nextIndex);
+                };
+
+                const prevSlide = () => {
+                    const prevIndex = currentSlide.value === 0 ? slides.value.length - 1 : currentSlide.value - 1;
+                    goToSlide(prevIndex);
+                };
+
+                const handleNavClick = (section) => {
+                    console.log(`Navigate to ${section}`);
+                    // Add your navigation logic here
+                };
+
+                const handleCTA = (action) => {
+                    console.log(`CTA action: ${action}`);
+                    // Add your CTA logic here
+                };
+
+                const handleSearch = () => {
+                    console.log('Search clicked');
+                    // Add search functionality
+                };
+
+                const handleCart = () => {
+                    console.log('Cart clicked');
+                    cartCount.value += 1;
+                    // Add cart functionality
+                };
+
+                const handleScroll = () => {
+                    const navbar = document.querySelector('.navbar');
+                    if (window.scrollY > 50) {
+                        navbar.style.background = 'rgba(21, 63, 131, 0.98)';
+                    } else {
+                        navbar.style.background = 'rgba(21, 63, 131, 0.95)';
+                    }
+                };
+
+                onMounted(() => {
+                    // Initialize AOS
+                    AOS.init({
+                        duration: 800,
+                        easing: 'ease-out-cubic',
+                        once: true,
+                        offset: 50
+                    });
+
+                    // Start autoplay
+                    startAutoplay();
+
+                    // Add scroll listener
+                    window.addEventListener('scroll', handleScroll);
+
+                    // Initial animation trigger
+                    setTimeout(() => {
+                        animateText.value = true;
+                    }, 500);
+                });
+
+                onUnmounted(() => {
+                    stopAutoplay();
+                    window.removeEventListener('scroll', handleScroll);
+                });
+
+                return {
+                    slides,
+                    currentSlide,
+                    animateText,
+                    cartCount,
+                    goToSlide,
+                    nextSlide,
+                    prevSlide,
+                    handleNavClick,
+                    handleCTA,
+                    handleSearch,
+                    handleCart
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
