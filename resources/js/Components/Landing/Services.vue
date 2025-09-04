@@ -15,7 +15,7 @@
                 <div class="row g-4">
                     <div v-for="(service, index) in services" :key="service.id" class="col-lg-4 col-md-6 col-12"
                         :data-aos="'zoom-in'" :data-aos-delay="(index * 100)" data-aos-duration="800">
-                        <div class="service-item" :class="{ 'active': hoveredCard === service.id }"
+                        <a :href="service.link" class="service-item" :class="{ 'active': hoveredCard === service.id }"
                             @mouseenter="hoveredCard = service.id" @mouseleave="hoveredCard = null">
                             <div class="service-icon-wrapper">
                                 <div class="service-icon" :style="{ backgroundColor: getIconColor(service.id) }"
@@ -24,7 +24,7 @@
                             </div>
                             <h4 class="service-name">{{ service.title }}</h4>
                             <p class="service-desc">{{ service.description }}</p>
-                        </div>
+                        </a>
                     </div>
 
                     <MoreServicesCard class="col-lg-4 col-md-6 col-12" data-aos="zoom-in" data-aos-delay="400" />
@@ -62,7 +62,7 @@ const page = usePage();
 const settings = page.props.value.dashboard_data.serviceSection;
 // Original services data from your code
 const services = computed(() => {
-    return settings.services.map((item, index) => ({ id: index + 1, title: item.title, description: item.description, icon: item.icon }));
+    return settings.services.map((item, index) => ({ id: index + 1, title: item.title, description: item.description, icon: item.icon, link: item.link }));
 });
 
 const hoveredCard = ref(null)
@@ -143,12 +143,15 @@ $text-body: #333;
 .service-item {
     background: white;
     padding: 40px 30px;
+    display: block;
     border-radius: 12px;
     text-align: center;
     transition: all 0.3s ease;
+    text-decoration: none;
     height: 100%;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
     cursor: pointer;
+    color: black;
     // border: 2px solid transparent;
 
     @media (max-width: 768px) {

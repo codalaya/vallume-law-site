@@ -66,9 +66,10 @@
               {{ __n("law_firm") }}
             </Link>
           </li> -->
+
                     <li class="nav-item">
-                        <Link class="nav-link" :href="route('landing.testimonials')">
-                        {{ __n("Testimonials") }}
+                        <Link class="nav-link" :href="route('services.detail', { slug: 'paralegal-services-7' })">
+                        {{ __n("Paralegal") }}
                         </Link>
                     </li>
                     <li class="nav-item">
@@ -79,6 +80,11 @@
                     <li class="nav-item">
                         <Link class="nav-link" :href="route('blogs.listing')">
                         {{ __n("News & Blogs") }}
+                        </Link>
+                    </li>
+                    <li class="nav-item">
+                        <Link class="nav-link" :href="route('landing.testimonials')">
+                        {{ __n("Testimonials") }}
                         </Link>
                     </li>
                     <!-- <li v-if="$page.props.settings.is_community_form_show == 1"
